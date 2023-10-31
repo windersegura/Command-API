@@ -13,18 +13,25 @@ namespace CommandAPI.Data
         }
         public List<Command> getAllCommand()
         {
-            var commands = _context.Command.AsNoTracking();
-            List<Command> _commands = new List<Command>();
-
-            foreach (var command in commands)
+            try
             {
-                _commands.Add(command);
+                var commands = _context.Command.AsNoTracking().ToList();
+                return commands;
             }
-
-            return _commands;
+            catch (System.Exception ex)
+            {             
+                throw ex;
+            }
+            
         }
 
-        public Command getCommand()
+        public Command getCommand(int id)
+        {
+            var command = _context.Command.Find(id);
+            return command;
+        }
+
+        public void CreateCommand(Command command)
         {
             throw new NotImplementedException();
         }

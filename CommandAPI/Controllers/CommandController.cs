@@ -23,5 +23,12 @@ namespace CommandAPI.Controllers
             //return NotFound();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Command>> GetCommand(int id)
+        {
+            var command = _repo.getCommand(id);
+            return Ok(command);
+        }
+
     }
 }
