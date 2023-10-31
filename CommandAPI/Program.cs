@@ -1,3 +1,6 @@
+using CommandAPI.Data;
+using CommandAPI.CommandContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommandAPI;
 
@@ -13,6 +16,9 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddScoped<ICommandRepo, CommandRepository>();
+        builder.Services.AddDbContext<CommandContextApi>(options => 
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
         var app = builder.Build();
 
