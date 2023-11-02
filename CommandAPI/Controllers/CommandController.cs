@@ -30,5 +30,12 @@ namespace CommandAPI.Controllers
             return Ok(command);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Post(Command command)
+        {
+            _repo.CreateCommand(command);
+            return NoContent();
+        }
+
     }
 }

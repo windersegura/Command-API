@@ -33,7 +33,8 @@ namespace CommandAPI.Data
 
         public void CreateCommand(Command command)
         {
-            throw new NotImplementedException();
+            _context.Add(command);
+            _context.SaveChanges();
         }
     }
 }
